@@ -6,17 +6,21 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-  # The most common configuration options are documented and commented below.
+  # The most common configuration options are documented and commented below. 
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "geerlingguy/ubuntu2004"
+  config.vm.box = "roboxes/opensuse42"
+  #config.vm.box_version = "0.0.1"
+
+  #config.vm.box_version = "0.1"
   #config.ssh.username = "pelatihan"  
-  config.vm.provider :libvirt do |libvirt|
-    libvirt.cpus = 1
-    libvirt.memory = 1024
+  config.vm.provider :virtualbox do |vb|
+  #config.vagrant.plugins = "vagrant-libvirt"
+    vb.cpus = 1
+    vb.memory = 1024
   end
 
   # Disable automatic box update checking. If you disable this, then
