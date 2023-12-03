@@ -9,11 +9,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
 
     # Customize the VM
-    vb.name = "ubuntu-server"
+    vb.name = "lamp-server"
     vb.check_guest_additions = false
     vb.cpus = 1
     vb.memory = 1024
 
-  config.vm.provision "shell", path: "install-docker.sh"
+  config.vm.synced_folder "apache/laravel.conf", "/etc/apache/sites-available/laravel.conf", create: true
+  config.vm.synced_folder "php/php.ini", "/etc/php/8.2/apache2/php.ini", create: true
+
+  config.vm.provision "shell", path: "init.sh"
   end
 end
