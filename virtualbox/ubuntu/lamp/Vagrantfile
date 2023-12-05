@@ -15,8 +15,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.memory = 1024
 
   config.vm.synced_folder "apache", "/vagrant/apache", create: true
+
   config.vm.synced_folder "php", "/vagrant/php", create: true
 
-  config.vm.provision "shell", path: "init.sh"
+  config.vm.provision "shell", path: "script.sh"
   end
 end
