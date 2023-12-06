@@ -20,13 +20,16 @@ DB_NAME="lamp"
 DB_USER="onomi"
 DB_PASSWORD="7weZ41oW"
 
-
 # Create new user & database
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
 sudo mysql -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
 sudo mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 echo "Database is success creating..."
+
+# Config MySQL
+sudo sed -i 's/bind-address\s*=\s*127\.0\.0\.1/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo service mysql restart
 
 # Install PHP
 sudo add-apt-repository -y ppa:ondrej/php
@@ -39,8 +42,8 @@ composer --version
 
 # Create Laravel project
 sudo mkdir /var/www/html/app && cd /var/www/html/app
-sudo git clone https://github.com/laravel/laravel.git
-cd laravel && composer install --no-dev -n
+sudo git clone https://github.com/laravel/laravel.git && cd laravel
+sudo composer install --no-dev -n | echo "yes"
 sudo cp /vagrant/php/.env /var/www/html/app/laravel/.env
 
 # Set permission
