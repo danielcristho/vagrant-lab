@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "geerlingguy/ubuntu2004"
+  config.vm.network "private_network", ip: "192.168.1.10" # Using host-only adapter
+  config.vm.provider :virtualbox do |vb|
+
+    # Customize the VM
+    vb.name = "lemp-server"
+    vb.check_guest_additions = false
+    vb.cpus = 1
+    vb.memory = 1024
+
+  config.vm.synced_folder "nginx", "/vagrant/nginx", create: true
+
+  config.vm.synced_folder "php", "/vagrant/php", create: true
+
+  config.vm.provision "shell", path: "script.sh"
+  end
+end

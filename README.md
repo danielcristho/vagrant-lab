@@ -9,5 +9,5 @@
 
 ## Requirements
 
-- Vagrant 2.4.0
-- Virtualbox, Virt, QEMU
+- Vagrant 2.4.0 or latest.
+- Virtualbox, Virt, QEMU.
