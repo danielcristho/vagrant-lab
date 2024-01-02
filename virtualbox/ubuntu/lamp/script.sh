@@ -44,7 +44,7 @@ composer --version
 sudo mkdir /var/www/html/app && cd /var/www/html/app
 sudo git clone https://github.com/laravel/laravel.git && cd laravel
 sudo composer install --no-dev -n | echo "yes"
-sudo cp /vagrant/php/.env /var/www/html/app/laravel/.env
+sudo cp /vagrant/php/.env.example /var/www/html/app/laravel/.env
 
 # Set permission
 sudo chown -R www-data:www-data /var/www/html/app/laravel
